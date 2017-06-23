@@ -53,7 +53,8 @@ __global__ void matrix_mult_shared(int** a, int** b, int** c,int n)
                 int sum = 0;
                 int ph,k;
                 for (ph = 0; ph < n/THREADS_PER_BLOCK; ++ph) {
-                        sub_a[ty][tx] = a[Row][ph*THREADS_PER_BLOCK + tx];                              sub_b[ty][tx] = b[ph*THREADS_PER_BLOCK + ty][Col];
+                        sub_a[ty][tx] = a[Row][ph*THREADS_PER_BLOCK + tx];                              
+                        sub_b[ty][tx] = b[ph*THREADS_PER_BLOCK + ty][Col];
                         __syncthreads();
 
                         for (k = 0; k < THREADS_PER_BLOCK; ++k) {
